@@ -1,20 +1,18 @@
 package pl.sda.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import pl.sda.dao.PersonDao;
 import pl.sda.model.Person;
 import pl.sda.service.PersonService;
 import pl.sda.validator.PersonValidator;
 
 public class PersonServiceImpl implements PersonService {
-
-    private final PersonDao personDao;
-
+    @Qualifier("personDaoMemory")
+    @Autowired
+    private PersonDao personDao;
+    @Autowired
     private PersonValidator validator;
-
-    //wstrzykiwanie przez konstruktor
-    public PersonServiceImpl(PersonDao personDao) {
-        this.personDao = personDao;
-    }
 
     @Override
     public void add(Person person) {
